@@ -1,3 +1,5 @@
+import logger from '../configs/logger.js'
+
 export default (isProduction = false, app) => {
 
   // catch 404 and forward to error handler
@@ -15,6 +17,7 @@ export default (isProduction = false, app) => {
       message: err.message,
     }
     if(err.code) errorBody.code = err.code
+    logger.error(JSON.stringify(errorBody))
     res.status(statusCode);
     res.json({
       error: errorBody
