@@ -1,19 +1,19 @@
-import { validationResult } from 'express-validator'
+const { validationResult } = require("express-validator");
 
 // Import Validators
-import upload from './upload.js'
+const upload = require("./upload");
 
 const validators = {
-  upload
-}
+  upload,
+};
 
-export default {
+module.exports = {
   check(req, res, next) {
-    let errors = validationResult(req).array()
-    if (errors.length == 0) return next()
-    let error = new Error(`${errors[0].param}: ${errors[0].msg}`)
-    error.status = 422
-    throw error
+    let errors = validationResult(req).array();
+    if (errors.length == 0) return next();
+    let error = new Error(`${errors[0].param}: ${errors[0].msg}`);
+    error.status = 422;
+    throw error;
   },
   ...validators,
-}
+};

@@ -1,9 +1,9 @@
-import { Router } from 'express'
+const { Router } = require("express");
 const router = Router();
-import controller from '../../controllers/upload.js'
-import validator from '../../validators/index.js'
+const controller = require("../../controllers/upload");
+const validator = require("../../validators");
 
-router.post('/', controller.onUpload)
-router.delete('/:id', [validator.upload.delete, validator.check], controller.onDelete)
+router.post("/", controller.onUpload);
+router.delete("/:id", [validator.upload.delete, validator.check], controller.onDelete);
 
-export default router
+module.exports = router;

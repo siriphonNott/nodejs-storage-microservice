@@ -1,10 +1,6 @@
-import { param } from 'express-validator'
+const { param } = require("express-validator");
 
-export default {
-  find: [
-    param('id').notEmpty().withMessage('is empty'),
-  ],
-  delete: [
-    param('id').notEmpty().withMessage('is empty'),
-  ],
-}
+module.exports = {
+  find: [param("id").notEmpty().withMessage("is empty")],
+  delete: [param("id").notEmpty().withMessage("is empty")],
+};

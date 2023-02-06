@@ -1,7 +1,6 @@
-import { config } from 'dotenv'
-config({ path: `./.env.${process.env.NODE_ENV}` })
+require('dotenv').config({ path: `./.env.${process.env.NODE_ENV}` })
 
-export default {
+module.exports = {
   port: process.env.PORT || 3000,
   baseUrl: process.env.BASE_URL,
   isProduction: process.env.NODE_ENV === 'production',

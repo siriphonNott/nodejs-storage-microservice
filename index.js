@@ -1,34 +1,30 @@
-import express from "express";
-import cors from "cors";
-import routes from "./routes/index.js";
-import errorHandler from "./configs/errorHandler.js";
-import responseFormat from "./configs/responseFormat.js";
-import middleware from "./configs/middleware.js";
-import config from "./configs/app.js";
-import logger from "./configs/logger.js";
+const express = require("express");
+const cors = require("cors");
+const config = require("./configs/app");
+const logger = require("./configs/logger");
 const app = express();
 
 // CORS
 app.use(cors());
 
 // Connect database
-import "./configs/databases.js";
+require("./configs/databases");
 
 // Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Custom Response Format
-app.use(responseFormat);
+app.use(require("./configs/responseFormat"));
 
 // Middleware
-app.use(middleware);
+require("./configs/middleware");
 
 // Routes
-app.use(routes);
+app.use(require("./routes"));
 
 // Handle error
-errorHandler(config.isProduction, app);
+require("./configs/errorHandler")(config.isProduction, app);
 
 // Start Server
 const server = app

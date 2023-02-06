@@ -1,5 +1,5 @@
-import mysql from 'mysql2'
-import config from '../configs/app.js'
+const mysql = require('mysql2')
+const config = require('../configs/app')
 
 const databases = {
   mongoDB() {},
@@ -22,4 +22,4 @@ const databases = {
   mssql() {},
 }
 
-export default databases.mysql()
+module.exports = databases.mysql()

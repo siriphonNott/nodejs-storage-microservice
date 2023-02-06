@@ -1,6 +1,6 @@
-import Service from "../services/upload.js";
+const Service = require("../services/upload")
 
-export default {
+module.exports = {
   async onUpload(req, res) {
     try {
       const result = await Service.onUpload(req, res);

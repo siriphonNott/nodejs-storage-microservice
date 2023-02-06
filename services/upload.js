@@ -1,17 +1,15 @@
-import multer from "multer";
-import { v4 as uuidv4 } from "uuid";
-import connection from "../configs/databases.js";
-import config from "../configs/app.js";
-import { newError } from "../helpers/error.js";
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
+const connection = require("../configs/databases");
+const config = require("../configs/app");
+const { newError } = require("../helpers/error");
+
 const tableName = "storage";
 
-export default {
+module.exports = {
   async findById(id) {
     try {
-      let [results] = await connection.query(
-        `SELECT * FROM ${tableName} WHERE id = ?`,
-        [id]
-      );
+      let [results] = await connection.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id]);
       if (results.length < 1) {
         return Promise.reject(newError("not found", 404));
       }
@@ -46,10 +44,7 @@ export default {
   },
   async onDelete(id) {
     try {
-      const [results] = await connection.query(
-        `SELECT * FROM ${tableName} WHERE id = ?`,
-        [id]
-      );
+      const [results] = await connection.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id]);
       if (results.length < 1) {
         return Promise.reject(newError("path: not found", 404));
       }

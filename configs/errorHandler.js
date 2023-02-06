@@ -1,6 +1,6 @@
-import logger from '../configs/logger.js'
+const logger = require('../configs/logger')
 
-export default (isProduction = false, app) => {
+module.exports = (isProduction = false, app) => {
 
   // catch 404 and forward to error handler
   app.use((req, res, next) => {

@@ -1,6 +1,6 @@
-import logger from '../configs/logger.js'
+const logger = require('../configs/logger')
 
-export default (req, res, next) => {
+module.exports = (req, res, next) => {
   res.success = (data = "", statusCode = 200) => {
     res.status(statusCode || 200).send(data);
   };

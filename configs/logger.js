@@ -1,6 +1,6 @@
-import { createLogger, format, transports } from 'winston'
-import fs from 'fs'
-import path from 'path'
+const { createLogger, format, transports } = require('winston')
+const fs = require('fs')
+const path = require('path')
 
 const env = process.env.NODE_ENV || 'development';
 const logDir = 'logs';
@@ -41,4 +41,4 @@ const logger = createLogger({
   ]
 });
 
-export default logger
+module.exports = logger

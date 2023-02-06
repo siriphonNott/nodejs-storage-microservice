@@ -1,8 +1,8 @@
-import { Router } from 'express'
+const { Router } = require("express");
 const router = Router();
-import controller from '../../controllers/upload.js'
-import validator from '../../validators/index.js'
+const controller = require("../../controllers/upload");
+const validator = require("../../validators");
 
-router.get('/:id', [validator.upload.find, validator.check], controller.onFindById)
+router.get("/:id", [validator.upload.find, validator.check], controller.onFindById);
 
-export default router
+module.exports = router;

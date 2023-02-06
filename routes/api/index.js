@@ -1,8 +1,7 @@
-import { Router } from 'express'
-import upload from './uplaod.js'
+const { Router } = require('express')
+const upload = require('./uplaod')
 const router = Router();
 
 router.use('/upload', upload)
 
-
-export default router
+module.exports = router

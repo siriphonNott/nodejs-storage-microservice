@@ -19,7 +19,7 @@
     "url": "https://github.com/siriphonNott/nodejs-storage-microservice/issues"
   },
   "homepage": "https://github.com/siriphonNott/nodejs-storage-microservice#readme",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
