@@ -1,7 +1,8 @@
 {
   "name": "nodejs-storage-microservice",
   "version": "1.0.0",
-  "description": "",
+  "description": "Service for manage storage file with Express & Node.js",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development.local nodemon .",
