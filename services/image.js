@@ -2,9 +2,8 @@ const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const connection = require("../configs/databases");
 const config = require("../configs/app");
-const { newError } = require("../helpers/error");
-
-const tableName = "storage";
+const { newError } = require("../helpers");
+const tableName = "ss_storage";
 
 module.exports = {
   async findById(id) {
@@ -18,6 +17,7 @@ module.exports = {
       Promise.reject(newError(error));
     }
   },
+
   onUpload(req, res) {
     return new Promise((resolve, reject) => {
       const upload = multer({
@@ -32,6 +32,8 @@ module.exports = {
           try {
             await connection.query(`INSERT INTO ${tableName} SET ?`, {
               id,
+              ...(req.apiKeyData.userId && { userId: req.apiKeyData.userId }),
+              ...(req.apiKeyData.planId && { planId: req.apiKeyData.planId }),
               base64,
             });
             resolve({ url: `${config.baseUrl}/static/${id}` });
@@ -42,6 +44,7 @@ module.exports = {
       });
     });
   },
+
   async onDelete(id) {
     try {
       const [results] = await connection.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id]);

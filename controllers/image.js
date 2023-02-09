@@ -1,4 +1,4 @@
-const Service = require("../services/upload")
+const Service = require("../services/image");
 
 module.exports = {
   async onUpload(req, res) {
@@ -9,6 +9,7 @@ module.exports = {
       res.error(error);
     }
   },
+
   async onFindById(req, res) {
     try {
       let base64 = await Service.findById(req.params.id);
@@ -28,9 +29,20 @@ module.exports = {
       res.status(403).send(data);
     }
   },
-  async onDelete(req, res) {
+
+  async onDeleteById(req, res) {
     try {
       const result = await Service.onDelete(req.params.id);
+      res.success(result);
+    } catch (error) {
+      res.error(error);
+    }
+  },
+
+  async onDeleteByUrl(req, res) {
+    try {
+      const id = req.body.url.split('/').pop()
+      const result = await Service.onDelete(id);
       res.success(result);
     } catch (error) {
       res.error(error);

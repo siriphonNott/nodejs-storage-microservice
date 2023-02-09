@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const router = Router();
-const controller = require("../../controllers/upload");
+const controller = require("../../controllers/image");
 const validator = require("../../validators");
 
-router.get("/:id", [validator.upload.find, validator.check], controller.onFindById);
+router.get("/:id", [validator.image.find, validator.check], controller.onFindById);
 
 module.exports = router;

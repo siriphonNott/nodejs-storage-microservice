@@ -1,10 +1,14 @@
 const { validationResult } = require("express-validator");
 
 // Import Validators
-const upload = require("./upload");
+const image = require("./image");
+const apiKey = require("./apiKey");
+const balance = require("./balance");
 
 const validators = {
-  upload,
+  image,
+  apiKey,
+  balance
 };
 
 module.exports = {

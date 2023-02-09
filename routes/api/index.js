@@ -1,7 +1,13 @@
 const { Router } = require('express')
-const upload = require('./uplaod')
+const apiKey = require('./apiKey')
+const balance = require('./balance')
+const image = require('./image')
+const hash = require('./hash')
 const router = Router();
 
-router.use('/upload', upload)
+router.use('/apikey', apiKey)
+router.use('/balance', balance)
+router.use('/image', image)
+router.use('/hash', hash)
 
 module.exports = router

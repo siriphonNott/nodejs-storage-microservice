@@ -14,6 +14,9 @@ require("./configs/databases");
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Passport
+// require('./configs/passport');
+
 // Custom Response Format
 app.use(require("./configs/responseFormat"));
 
