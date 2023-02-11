@@ -2,6 +2,7 @@ Tables
   + ss_storage
     - id            - VARCHAR(36) PRIMARY INDEX UNIQUE
     - base64        - LONGTEXT NOT NULL
+    - apiKey        - VARCHAR(32) NOT NULL FOREIGN KEY
     - userId        - VARCHAR(36) NOT NULL FOREIGN KEY
     - planId        - VARCHAR(36) NULL FOREIGN KEY
     - createdAt     - DATETIME CURRENT_TIMESTAMP

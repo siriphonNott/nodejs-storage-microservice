@@ -32,6 +32,7 @@ module.exports = {
           try {
             await connection.query(`INSERT INTO ${tableName} SET ?`, {
               id,
+              apiKey: req.apiKeyData.apiKey,
               ...(req.apiKeyData.userId && { userId: req.apiKeyData.userId }),
               ...(req.apiKeyData.planId && { planId: req.apiKeyData.planId }),
               base64,

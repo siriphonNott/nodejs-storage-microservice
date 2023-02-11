@@ -44,14 +44,14 @@ module.exports = {
     try {
       const [apiKeyData] = await this.findByApiKey(apiKey);
       // check api key type 1: trial, 2: commerce, 3: lifetime
-      if (apiKeyData.typeId === 3) return { userId: apiKeyData.userId };
+      if (apiKeyData.typeId === 3) return { userId: apiKeyData.userId, apiKey: apiKeyData.apiKey };
       if ([1, 2].includes(+apiKeyData.typeId)) {
         const balance = await BalanceService.findByApiKey(apiKey);
         if (!balance.quotaRemain) return Promise.reject(newError("not enough quota", 400));
         await BalanceService.update(balance.id, { quotaRemain: balance.quotaRemain - 1 });
         return { userId: balance.userId, planId: balance.planId };
       }
-      return
+      return;
     } catch (error) {
       return Promise.reject(error);
     }
