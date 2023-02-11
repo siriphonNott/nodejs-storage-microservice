@@ -27,6 +27,7 @@ module.exports = {
         if (err) {
           reject(newError(err));
         } else {
+          if (!req.file) reject(newError('file is required', 400));
           const base64 = req.file.buffer.toString("base64");
           const id = uuidv4();
           try {
