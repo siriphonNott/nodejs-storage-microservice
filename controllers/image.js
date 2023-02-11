@@ -1,4 +1,5 @@
 const Service = require("../services/image");
+const config = require("../configs/app");
 
 module.exports = {
   async onUpload(req, res) {
@@ -14,7 +15,8 @@ module.exports = {
     try {
       let base64 = await Service.findById(req.params.id);
       const img = Buffer.from(base64, "base64");
-      res.set('Cache-Control', 'public, max-age=86400');
+      const maxAgeSec = 60 * 60 * 24 * config.cacheControlMaxAgeDay
+      res.set('Cache-Control', 'public, max-age=' + maxAgeSec);
       res.writeHead(200, {
         "Content-Type": "image/png",
         "Content-Length": img.length,
