@@ -4,8 +4,22 @@ const config = require("./configs/app");
 const logger = require("./configs/logger");
 const app = express();
 
+const whitelistSetting = {
+  production: ["https://mamove.co"],
+  development: ["https://dev.mamove.co"],
+}
+const whitelist = whitelistSetting[process.env.NODE_ENV] || []
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!whitelist.length || whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
 // CORS
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Connect database
 require("./configs/databases");
