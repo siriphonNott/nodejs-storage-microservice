@@ -1,6 +1,6 @@
 const cors = require("cors");
 const whitelistSetting = {
-  production: ["https://mamove.co"],
+  production: ["https://mamove.co", "https://dev.mamove.co"],
   development: ["https://dev.mamove.co"],
 }
 const whitelist = whitelistSetting[process.env.NODE_ENV] || []
