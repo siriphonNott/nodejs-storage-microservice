@@ -14,6 +14,7 @@ module.exports = {
     try {
       let base64 = await Service.findById(req.params.id);
       const img = Buffer.from(base64, "base64");
+      res.set('Cache-Control', 'public, max-age=86400');
       res.writeHead(200, {
         "Content-Type": "image/png",
         "Content-Length": img.length,
