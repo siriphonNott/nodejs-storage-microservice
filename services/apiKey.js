@@ -32,7 +32,7 @@ module.exports = {
     try {
       let [results] = await connection.query(`SELECT * FROM ${tableName} WHERE apiKey = ?`, [apiKey]);
       if (results.length < 1) {
-        return Promise.reject(newError("apiKey: not found", 404));
+        return Promise.reject(newError("api key: not found", 404));
       }
       return results;
     } catch (error) {
@@ -53,7 +53,7 @@ module.exports = {
       }
       return
     } catch (error) {
-      return Promise.reject(newError(error));
+      return Promise.reject(error);
     }
   },
 

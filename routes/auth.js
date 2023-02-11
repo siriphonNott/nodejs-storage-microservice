@@ -4,7 +4,7 @@ const ApiKeyService = require("../services/apiKey");
 const getApiKeyFromHeader = (req, res, next) => {
   const apiKey = req.headers["ss-api-key"];
   if (!apiKey) {
-    throw newError("api key not found", 404);
+    throw newError("must have api key", 403);
   } else {
     ApiKeyService.checkApiKey(apiKey)
       .then((data) => {
@@ -12,7 +12,6 @@ const getApiKeyFromHeader = (req, res, next) => {
         next();
       })
       .catch((error) => {
-        console.log('error:', error);
         res.error(error);
       });
   }
